@@ -42,8 +42,8 @@ export function LoginForm({
     resolver: zodResolver(loginSchema),
     mode: "onSubmit",
     defaultValues: {
-      email: "admin@gmail.com",
-      password: "Wahaj#1234",
+      email: "",
+      password: "",
     },
   });
 

@@ -6,7 +6,9 @@ const intlMiddleware = createMiddleware(routing);
 
 export default function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const sessionToken = request.cookies.get("better-auth.session_token")?.value;
+  const sessionToken = request.cookies.get(
+    "__Secure-better-auth.session_token",
+  )?.value;
 
   if (pathname.includes("/login") && sessionToken) {
     const url = request.nextUrl.clone();
