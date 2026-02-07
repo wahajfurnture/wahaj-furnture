@@ -1,0 +1,57 @@
+{
+  "homePage": {
+    "welcome": "Discover Your Perfect Home",
+    "shopNow": "Shop Now"
+  },
+  "category": {
+    "catHead": "Shop by Category",
+    "catText": "Explore our curated collections of premium furniture designed to elevate your space.",
+    "curtainsHead": "Curtains",
+    "curtainsText": "Elegant drapes and curtains to frame your windows.",
+    "curtainsActoin": "Explore Curtains",
+    "sofasHead": "Sofas",
+    "sofasText": "Comfortable and stylish sofas for your living space.",
+    "sofasActoin": "Explore Sofas"
+  },
+  "aboutUs": {
+    "heading": "About Us – Wahaj",
+    "content": "Wahaj is a brand specializing in custom-made furniture and finishing. We offer a smart selection experience that saves you the hassle of visiting showrooms, through a private fitting studio or home visit. We have over 7 years of manufacturing experience and are committed to high quality with a 10-year guarantee against foam sagging."
+  },
+  "model": {
+    "fabricType": "Fabric Type",
+    "fabricColor": "Approximate image of the fabric",
+    "cat": "Category",
+    "desc": "Description",
+    "loadingColors": "Loading Fabric Colors...",
+    "errorMessage": "Something Went Wrong",
+    "noFabricAvailable": "No Fabric Available",
+    "fabricColorAlt": "Fabric Color",
+    "loadingFabrics": "Loading Fabrics",
+    "selectFabric": "Select Fabric",
+    "fabrics": "Fabrics",
+    "loadingData": "Loading Data",
+    "loadingColorsList": "Loading Approximate image of the fabric",
+    "selectColor": "Select Approximate image of the fabric",
+    "errorLoadingColors": "Error loading Approximate image of the fabric",
+    "noColorsAvailable": "No Approximate image of the fabric available",
+    "thumbnailOf": "Thumbnail of",
+    "curtain": "Curtains",
+    "sofa": "Sofas"
+  },
+  "nav": {
+    "home": "Home",
+    "aboutUs": "About Us",
+    "contactUs": "Contact Us",
+    "sofas": "Sofas",
+    "curtains": "Curtains"
+  },
+  "contactUs": {
+    "heading": "Contact Us",
+    "description": "Get in touch with our team. We're here to help!",
+    "whatsapp": "Chat on WhatsApp",
+    "startChat": "Start Chat"
+  },
+  "book": "Book an appointment with a design consultant",
+  "curtains": "Curtains",
+  "sofas": "Sofas"
+}
