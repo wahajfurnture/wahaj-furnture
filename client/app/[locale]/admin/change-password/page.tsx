@@ -8,7 +8,6 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { authClient } from "@/app/[locale]/lib/auth";
 import { toast } from "sonner";
-import { changePassword } from "../../services/admin-api";
 
 const changePasswordSchema = z
   .object({
@@ -46,10 +45,18 @@ function ChangePasswordPage() {
   const onSubmit = async (values: ChangePasswordFormValues) => {
     try {
       setIsLoading(true);
-      await changePassword({
+      authClient.changePassword({
         currentPassword: values.currentPassword,
         newPassword: values.newPassword,
-      });
+        fetchOptions: {
+          onSuccess: () => {
+            toast.success("تم تغير كلمه السر بنجاح")
+          },
+          onError: () => {
+            toast.error("فشل تغير كلمه المرور")
+          }
+        }
+      })
     } catch (error) {
       console.error("Change password failed", error);
     } finally {
