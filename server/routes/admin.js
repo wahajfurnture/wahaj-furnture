@@ -18,7 +18,7 @@ import strictTo from "../utils/strictTo.js";
 
 const router = express.Router();
 
-app.use(strictTo(["admin"]));
+router.use(strictTo(["admin"]));
 
 router.get("/fabric", getAllFabrics);
 router.get("/fabric/:furnId", getFabricsByFurnId);
