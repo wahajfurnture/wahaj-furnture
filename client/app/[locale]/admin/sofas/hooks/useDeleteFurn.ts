@@ -8,6 +8,7 @@ export function useDeleteFurn() {
     mutationFn: deleteFurniture,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["admin-sofa"] });
+      queryClient.invalidateQueries({ queryKey: ["admin-curtains"] });
     },
   });
 }
