@@ -14,18 +14,11 @@ import {
   getFabricsByFurnId,
   removeAssociation,
 } from "../controllers/adminController.js";
-import protectedRoute from "../middlewares/protectedRoutes.js";
-import AppError from "../core/AppError.js";
+import strictTo from "../utils/strictTo.js";
 
 const router = express.Router();
 
-router.use(protectedRoute, (req, res, next) => {
-  if (req.user.role === "admin") {
-    return next();
-  }
-
-  next(new AppError("Not Authorized", 401));
-});
+app.use(strictTo(["admin"]));
 
 router.get("/fabric", getAllFabrics);
 router.get("/fabric/:furnId", getFabricsByFurnId);
