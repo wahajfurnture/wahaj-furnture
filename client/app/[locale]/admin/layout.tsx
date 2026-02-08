@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
-    // <ProtectedRoutes>
+    <ProtectedRoutes>
       <div className="min-h-screen bg-gray-50" dir="ltr">
         <HandleMobileOpen />
 
@@ -27,7 +27,7 @@ function AdminLayout({ children }: { children: React.ReactNode }) {
           </main>
         </div>
       </div>
-    // </ProtectedRoutes>
+    </ProtectedRoutes>
   );
 }
 
