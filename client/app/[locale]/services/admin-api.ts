@@ -21,7 +21,12 @@ export async function login(user: { email: string; password: string }) {
   if (!response.ok) throw new Error("Failed to Login");
   const data = await response.json();
 
-  sessionStorage.setItem("session", data.data.token);
+  try {
+    sessionStorage.setItem("session", data.data.token);
+  } catch (err) {
+    console.log(err);
+    toast.error("حدث خطأ");
+  }
 
   return data.data.user;
 }
