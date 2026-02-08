@@ -1,19 +1,18 @@
-import express from "express";
-import helmet from "helmet";
-import cors from "cors";
-import mongoSanititze from "express-mongo-sanitize";
 import cookieParser from "cookie-parser";
+import cors from "cors";
+import express from "express";
+import mongoSanititze from "express-mongo-sanitize";
 import rateLimit from "express-rate-limit";
+import helmet from "helmet";
 import hpp from "hpp";
 
-import notFoundError from "./middlewares/notFoundError.js";
-import furnRouter from "./routes/furniture.js";
-import adminRouter from "./routes/admin.js";
-import globalErrorHandler from "./middlewares/globalErrorHandler.js";
 import mongoose from "mongoose";
 import ResponseFormatter from "./core/ResponseFormatter.js";
-import { auth } from "./utils/auth.js";
-import { toNodeHandler } from "better-auth/node";
+import globalErrorHandler from "./middlewares/globalErrorHandler.js";
+import notFoundError from "./middlewares/notFoundError.js";
+import adminRouter from "./routes/admin.js";
+import authRouter from "./routes/auth.js";
+import furnRouter from "./routes/furniture.js";
 
 const app = express();
 
@@ -87,9 +86,8 @@ app.use(mongoSanititze());
 
 app.use("/api/v1/furniture", furnRouter);
 app.use("/api/v1/admin", adminRouter);
-
-app.all(
-  "/api/auth/{*any}",
+app.use(
+  "/api/v1/auth",
   (req, res, next) => {
     res.set({
       "Cache-Control":
@@ -100,8 +98,14 @@ app.all(
     });
     next();
   },
-  toNodeHandler(auth),
+  authRouter,
 );
+
+// app.all(
+//   "/api/auth/",
+
+//   toNodeHandler(auth),
+// );
 
 app.all(/(.*)/, notFoundError);
 
