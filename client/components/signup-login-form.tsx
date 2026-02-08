@@ -19,6 +19,7 @@ import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { Text } from "@radix-ui/themes";
+import { login } from "@/app/[locale]/services/admin-api";
 import { useRouter } from "next/navigation";
 
 const loginSchema = z.object({
@@ -28,11 +29,12 @@ const loginSchema = z.object({
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 
-export function LoginForm({
+export function SignupLoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
   const [formError, setFormError] = useState<string | null>(null);
+  const router = useRouter();
 
   const {
     register,
@@ -51,12 +53,8 @@ export function LoginForm({
   const onSubmit = async (values: LoginFormValues) => {
     setFormError(null);
     try {
-      await authClient.signIn.email({
-        email: values.email,
-        password: values.password,
-        rememberMe: true,
-        callbackURL: "/admin/sofas",
-      });
+      await login(values);
+      router.push("/admin/sofas");
     } catch (error) {
       const message =
         error instanceof Error

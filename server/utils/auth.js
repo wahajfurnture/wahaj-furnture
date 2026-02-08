@@ -9,6 +9,9 @@ export const auth = betterAuth({
     enabled: true,
     disableSignUp: true,
   },
+  advanced: {
+    defaultCookieAttributes: cookieConfig,
+  },
   trustedOrigins: [process.env.CLIENT_URL],
   user: {
     additionalFields: {
