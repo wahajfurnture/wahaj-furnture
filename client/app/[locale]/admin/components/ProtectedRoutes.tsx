@@ -1,8 +1,9 @@
 "use client";
 
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect } from "react";
 import { useRouter } from "@/i18n/navigation";
 import Spinner from "./Spinner";
+import { authClient } from "../../lib/auth";
 
 interface ProtectedRoutesProps {
   children: ReactNode;
@@ -10,24 +11,19 @@ interface ProtectedRoutesProps {
 
 function ProtectedRoutes({ children }: ProtectedRoutesProps) {
   const router = useRouter();
-  const [isChecking, setIsChecking] = useState(true);
-  const [hasToken, setHasToken] = useState(false);
+  const { data, isPending } = authClient.useSession();
 
   useEffect(() => {
-    const token = sessionStorage.getItem("session");
-    if (!token) {
+    if (!isPending && !data?.session) {
       router.push("/login");
-    } else {
-      setHasToken(true);
     }
-    setIsChecking(false);
-  }, [router]);
+  }, [data?.session, isPending, router]);
 
-  if (isChecking) {
+  if (isPending) {
     return <Spinner />;
   }
 
-  if (!hasToken) {
+  if (!data?.session) {
     return null;
   }
 

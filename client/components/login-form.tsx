@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -33,6 +33,14 @@ export function LoginForm({
   ...props
 }: React.ComponentProps<"div">) {
   const [formError, setFormError] = useState<string | null>(null);
+  const router = useRouter();
+  const { data, isPending } = authClient.useSession();
+
+  useEffect(() => {
+    if (!isPending && data?.session) {
+      router.replace("/admin/curtains");
+    }
+  }, [data?.session, isPending, router]);
 
   const {
     register,
