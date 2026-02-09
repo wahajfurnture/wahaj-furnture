@@ -11,7 +11,6 @@ import ResponseFormatter from "./core/ResponseFormatter.js";
 import globalErrorHandler from "./middlewares/globalErrorHandler.js";
 import notFoundError from "./middlewares/notFoundError.js";
 import adminRouter from "./routes/admin.js";
-import authRouter from "./routes/auth.js";
 import { toNodeHandler } from "better-auth/node";
 import furnRouter from "./routes/furniture.js";
 import { auth } from "./utils/auth.js";
@@ -88,20 +87,6 @@ app.use(mongoSanititze());
 
 app.use("/api/v1/furniture", furnRouter);
 app.use("/api/v1/admin", adminRouter);
-// app.use(
-//   "/api/v1/auth",
-//   (req, res, next) => {
-//     res.set({
-//       "Cache-Control":
-//         "no-store, no-cache, must-revalidate, max-age=0, private",
-//       Pragma: "no-cache",
-//       Expires: "0",
-//       Vary: "Accept-Encoding, Origin, Authorization",
-//     });
-//     next();
-//   },
-//   authRouter,
-// );
 
 app.all(
   "/api/auth/{*any}",

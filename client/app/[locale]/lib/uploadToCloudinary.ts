@@ -1,5 +1,4 @@
-const cloudinaryCloudName =
-  process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "digmekbtt";
+const cloudinaryCloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "";
 const cloudinaryUploadPreset =
   process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || "";
 
@@ -31,6 +30,5 @@ export async function uploadToCloudinary(file: File): Promise<string> {
   }
 
   const data = await response.json();
-  console.log("Cloudinary upload success", data);
   return data.secure_url as string;
 }

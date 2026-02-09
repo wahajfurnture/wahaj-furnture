@@ -43,8 +43,8 @@ export function LoginForm({
     resolver: zodResolver(loginSchema),
     mode: "onSubmit",
     defaultValues: {
-      email: "admin@gmail.com",
-      password: "Furniture#4321",
+      email: "",
+      password: "",
     },
   });
 

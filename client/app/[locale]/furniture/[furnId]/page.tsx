@@ -4,6 +4,8 @@ import { setRequestLocale } from "next-intl/server";
 import { Suspense } from "react";
 import Spinner from "../../admin/components/Spinner";
 
+export const revalidate = 86400
+
 async function Page({
   params,
 }: {
