@@ -85,23 +85,21 @@ app.use(express.json({ limit: "10kb" }));
 
 app.use(mongoSanititze());
 
+// disable any cache
+app.use((req, res, next) => {
+  res.set({
+    "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0, private",
+    Pragma: "no-cache",
+    Expires: "0",
+    Vary: "Accept-Encoding, Origin, Authorization",
+  });
+  next();
+});
+
 app.use("/api/v1/furniture", furnRouter);
 app.use("/api/v1/admin", adminRouter);
 
-app.all(
-  "/api/auth/{*any}",
-  (req, res, next) => {
-    res.set({
-      "Cache-Control":
-        "no-store, no-cache, must-revalidate, max-age=0, private",
-      Pragma: "no-cache",
-      Expires: "0",
-      Vary: "Accept-Encoding, Origin, Authorization",
-    });
-    next();
-  },
-  toNodeHandler(auth),
-);
+app.all("/api/auth/{*any}", toNodeHandler(auth));
 
 app.all(/(.*)/, notFoundError);
 
