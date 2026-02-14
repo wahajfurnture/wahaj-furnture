@@ -3,5 +3,4 @@ export const cookieConfig = {
   secure: true,
   domain: ".wahaj.it.com",
   sameSite: "none",
-  maxAge: 1000 * 60 * 60 * 24 * 30,
 };
