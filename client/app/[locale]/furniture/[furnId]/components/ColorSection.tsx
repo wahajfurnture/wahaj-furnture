@@ -21,11 +21,25 @@ export function ColorSection({ fabricId }: ColorSectionProps) {
     isPending,
     isError,
   } = useFabricColors(fabricId, furnId);
-  const { selectedColor, setSelectedColor } = useColorContext();
+  const { selectedColor, setSelectedColor, setIsColorLoading, setHasColors } =
+    useColorContext();
 
   useEffect(() => {
-    if (!isPending && colors) setSelectedColor(colors[0]);
-  }, [colors, fabricId, setSelectedColor, isPending]);
+    setIsColorLoading(isPending);
+  }, [isPending, setIsColorLoading]);
+
+  useEffect(() => {
+    if (isPending) return;
+
+    if (colors && colors.length > 0) {
+      setSelectedColor(colors[0]);
+      setHasColors(true);
+      return;
+    }
+
+    setSelectedColor(null);
+    setHasColors(false);
+  }, [colors, fabricId, isPending, setHasColors, setSelectedColor]);
 
   const handleColorSelect = (color: FabricColor) => {
     setSelectedColor(color);
@@ -65,7 +79,7 @@ export function ColorSection({ fabricId }: ColorSectionProps) {
         </div>
       )}
 
-      {colors?.length && (
+      {colors?.length ? (
         <Flex gap={"3"} wrap={"wrap"}>
           {colors.map((color: FabricColor) => (
             <button
@@ -87,7 +101,7 @@ export function ColorSection({ fabricId }: ColorSectionProps) {
             </button>
           ))}
         </Flex>
-      )}
+      ) : null}
     </div>
   );
 }

@@ -37,7 +37,7 @@ export function FabricSelect({
             onFabricChange(fabric);
           }
         }}
-        disabled={fabrics.length === 0}
+        disabled={!!selectedFabricId}
       >
         <Select.Trigger
           id="fabric-select"

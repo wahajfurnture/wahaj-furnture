@@ -73,7 +73,15 @@ export default function FurnitureCardContent({
         </Box>
       </Box>
 
-      <Grid columns={"1"} gapY={"4"} className="order-3">
+      <Grid
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }}
+        columns={"1"}
+        gapY={"4"}
+        className="order-3"
+      >
         <FabricColorSelector furnId={furnId} onColorChange={setSelectedColor} />
         <BookButton />
       </Grid>

@@ -15,11 +15,31 @@ export default function FurnitureImages({
   furnitureName,
 }: FurnitureImagesProps) {
   const [imageErrors, setImageErrors] = useState<Set<number>>(new Set());
-  const { selectedColor } = useColorContext();
+  const { selectedColor, isColorLoading, hasColors } = useColorContext();
+
+  if (isColorLoading) {
+    return (
+      <div className="w-full aspect-square bg-gray-200 rounded-lg animate-pulse" />
+    );
+  }
+
+  if (!hasColors) {
+    return (
+      <div className="relative w-full aspect-square overflow-hidden rounded-lg bg-gray-100 border border-gray-200">
+        <div className="w-full h-full flex items-center justify-center">
+          <span className="text-gray-400 text-sm">No fabric available</span>
+        </div>
+      </div>
+    );
+  }
 
   if (!selectedColor) {
     return (
-      <div className="w-full aspect-square bg-gray-200 rounded-lg animate-pulse" />
+      <div className="relative w-full aspect-square overflow-hidden rounded-lg bg-gray-100 border border-gray-200">
+        <div className="w-full h-full flex items-center justify-center">
+          <span className="text-gray-400 text-sm">No images available</span>
+        </div>
+      </div>
     );
   }
 
