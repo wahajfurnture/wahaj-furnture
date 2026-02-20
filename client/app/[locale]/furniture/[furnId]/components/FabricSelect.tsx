@@ -19,6 +19,7 @@ export function FabricSelect({
   selectedFabricDescription,
 }: FabricSelectProps) {
   const t = useTranslations("model");
+  console.log(!!selectedFabricId)
 
   return (
     <div className="border-t pt-6">
@@ -37,7 +38,7 @@ export function FabricSelect({
             onFabricChange(fabric);
           }
         }}
-        disabled={!!selectedFabricId}
+        disabled={!selectedFabricId}
       >
         <Select.Trigger
           id="fabric-select"
